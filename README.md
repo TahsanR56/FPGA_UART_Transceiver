@@ -1,69 +1,92 @@
-# UART Transceiver (WIP)
+# UART Transceiver (FPGA / Verilog) — WIP
 
-A custom UART (Universal Asynchronous Receiver/Transmitter) transceiver designed and implemented from first principles.
+A UART (Universal Asynchronous Receiver/Transmitter) implemented in **Verilog HDL**, designed for FPGA-style digital logic and verified using simulation.
 
-This project focuses on low-level digital communication, timing, and state-machine design, with an emphasis on correctness, robustness, and hardware realism.
+This project focuses on **timing-accurate serial communication**, finite state machines, and hardware-oriented design — without relying on vendor IP or UART cores.
 
 **Status:** Early development / Work in Progress  
-Code and documentation will be added incrementally.
+**Verification:** Simulation-only (no hardware target yet)
 
 ---
 
-## Project Goals
+## Objectives
 
-- Implement a fully functional UART **transmitter and receiver**
-- Handle:
-  - Start and stop bits
-  - Configurable baud rate
-  - Bit sampling and timing accuracy
-  - Framing and error handling
-- Design using **finite state machines**
-- Emphasise clean, readable, and well-documented implementation
+- Design a complete UART TX and RX from first principles
+- Emphasise:
+  - Bit-level timing accuracy
+  - FSM-based design
+  - Deterministic hardware behaviour
+- Verify correctness through simulation and testbenches
 
 ---
 
-## Planned Features
+## Planned Architecture
 
-- UART TX module
-- UART RX module
 - Baud rate generator
-- Configurable parameters (baud rate, data bits)
-- Simulation and testing
-- Clear timing diagrams and documentation
+- UART transmitter (TX)
+- UART receiver (RX)
+- Parameterised design (baud rate, data bits, clock frequency)
+
+---
+
+## Verification Strategy
+
+- Self-checking Verilog testbenches
+- TX → RX loopback simulation
+- Timing verification using waveform inspection
+- Corner-case testing (start bit detection, framing errors)
 
 ---
 
 ## Why This Project?
 
-This project is intended to demonstrate:
-- Understanding of serial communication protocols
-- Digital logic and state-machine design
-- Timing-critical systems
-- Embedded / systems-level thinking
+UART is a deceptively simple protocol that exposes real-world digital design challenges:
+- clock domain timing
+- sampling accuracy
+- FSM correctness
+- protocol robustness
 
-Rather than using a library or hardware abstraction, the UART is built from the ground up to deepen understanding of how real communication hardware works.
+This project is intended to demonstrate FPGA-ready design practices and verification skills.
+
+---
+
+## Repository Structure
+- rtl/ – synthesizable Verilog modules
+- sim/ – testbenches and simulation scripts
+- docs/ – architecture notes and timing diagrams
+
 
 ---
 
 ## Roadmap
 
-- [ ] Define UART timing requirements
-- [ ] Design TX state machine
-- [ ] Design RX state machine
-- [ ] Implement baud rate generator
-- [ ] Simulate and test basic TX/RX loopback
-- [ ] Add documentation and diagrams
+- [ ] Define UART timing model
+- [ ] Design baud rate generator
+- [ ] Implement TX FSM
+- [ ] Implement RX FSM
+- [ ] Write self-checking testbenches
+- [ ] Verify timing and edge cases
+- [ ] Document results
 
 ---
 
-## Tech Stack (Planned)
+## Tools (Planned)
 
-- Language: C / Verilog / VHDL / SystemVerilog *(update once chosen)*
-- Simulation: TBD
-- Platform: Embedded / FPGA / Software simulation
+- Verilog HDL
+- Simulator: Icarus Verilog / ModelSim / Verilator
+- Waveform viewer: GTKWave
 
 ---
 
 ## Status
 
-This repository is actively being developed and will be updated regularly.
+This repository is under active development and will be expanded incrementally.
+
+
+
+
+
+
+
+
+
