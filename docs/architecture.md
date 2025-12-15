@@ -1,36 +1,49 @@
-# UART Architecture Overview
+# UART Transceiver Architecture
 
-## Overview
+## High-Level Overview
 
-The UART is divided into the following blocks:
+The UART consists of four primary blocks:
 
 - Baud Rate Generator
 - Transmitter (TX)
 - Receiver (RX)
-- Control Logic
+- Control and status logic
 
-Each block is designed independently and integrated via well-defined interfaces.
+All modules are designed as synthesizable Verilog with clean, parameterised interfaces.
+
+---
+
+## Baud Rate Generator
+
+Generates a tick at the configured baud rate based on the system clock.
+This tick drives both TX and RX timing.
 
 ---
 
 ## Transmitter (TX)
 
-The transmitter sends:
-- 1 start bit (LOW)
-- N data bits (LSB first)
-- 1 stop bit (HIGH)
-
-State machine approach:
+FSM states:
 - IDLE
 - START
 - DATA
 - STOP
 
+Behaviour:
+- Outputs start bit (LOW)
+- Shifts data LSB-first
+- Outputs stop bit (HIGH)
+
 ---
 
 ## Receiver (RX)
 
-The receiver:
-- Detects the falling edge of the start bit
-- Samples data bits at the centre of each bit period
-- Assembles received bytes
+FSM states:
+- IDLE
+- START
+- DATA
+- STOP
+
+Behaviour:
+- Detects falling edge of start bit
+- Samples data at the centre of each bit period
+- Reconstructs received byte
